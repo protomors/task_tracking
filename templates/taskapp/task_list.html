@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Your Tasks</h2>
+
+  <form method="get">
+    <label for="status">Filter by status:</label>
+    <select name="status" id="status">
+      <option value="">All</option>
+      <option value="pending">Pending</option>
+      <option value="in_progress">In Progress</option>
+      <option value="completed">Completed</option>
+    </select>
+    <button type="submit">Filter</button>
+  </form>
+  <div><a href="/task/new">Add Task</a></div>
+
+  <ul>
+    {% for task in tasks_list %}
+      <li><a href="{%url 'task-detail' task.pk %}">{{ task.title }}</a> - {{ task.get_status_display }}
+        <a href="{% url 'task-edit' task.pk %}">Edit</a>
+        <a href="{% url 'task-delete' task.pk %}">Delete</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
