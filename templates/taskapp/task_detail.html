@@ -7,4 +7,15 @@
     <div>{{task.due_data}}</div>
     <div>{{task.status}}</div>
     <div>{{task.priority}}</div>
+    <form>
+        {% csrf token%}
+        {{ comment_form }}
+        <input type="submit" value="Send">
+    </form>
+    {% for comment in task.comments.all %}
+        <p>{{ comment.user }}</p>
+        <p>{{ comment.text }}</p>
+        <p>{{ comment.created_at }}</p>
+        <a href="{% url 'comment-update' comment.id%}"><button>Update</button></a>
+    {% endfor %}
 {% endblock %}

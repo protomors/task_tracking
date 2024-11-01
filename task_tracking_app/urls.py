@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import TaskListView, TaskDetailView, TaskCreateView, TaskDeleteView, TaskUpdateView, SignUpView
+from .views import TaskListView, TaskDetailView, TaskCreateView, TaskDeleteView, TaskUpdateView, SignUpView, CommentUpdateView, CommentDeleteView
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -11,4 +11,6 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('signup/', SignUpView.as_view(), name='signup'),
+    path('comment/update/<int:pk>', CommentUpdateView.as_view(), name="comment-update"),
+    path('comment/delete/<int:pk>', CommentDeleteView.as_view(), name='comment-delete')
 ]

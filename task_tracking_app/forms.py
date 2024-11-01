@@ -1,5 +1,5 @@
 from django import forms
-from .models import Task
+from .models import Task, Comment
 
 class TaskForm(forms.ModelForm):
     due_date = forms.DateInput(attrs={'type': 'date'})
@@ -11,3 +11,8 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ("title", "description", "due_date", "status", "priority")
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        models = Comment
+        fields = ['text']

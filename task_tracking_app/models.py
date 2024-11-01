@@ -41,7 +41,7 @@ class Task(models.Model):
 # Модель для коментарів до завдань
 class Comment(models.Model):
     task = models.ForeignKey(Task, related_name='comments', on_delete=models.CASCADE)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
