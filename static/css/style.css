@@ -1,0 +1,446 @@
+/* Загальні стилі */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    resize: none;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.background {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding-top: 60px;
+    background-color: #000;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Стиль для зірок */
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    pointer-events: none; /* Зірки не перекриватимуть кліки */
+}
+
+.title {
+    color: white;
+    font-size: 4em;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1;
+    margin-bottom: 20px;
+}
+
+.panel-header {
+    width: 80%;
+    padding: 10px 20px;
+    background-color: #222;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: left;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.panel-header a {
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.panel-header a:hover {
+    background-color: rgba(255, 255, 255, 0);
+}
+.circles {
+    display: flex;
+    gap: 10px; /* Відстань між кругами */
+}
+
+.circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+/* Індивідуальні кольори для кожного круга */
+.circle1 {
+    background-color: #8cff66; /* Червоний за замовчуванням */
+}
+
+.circle2 {
+    background-color: #edff66; /* Зелений за замовчуванням */
+}
+
+.circle3 {
+    background-color: #ff6666; /* Синій за замовчуванням */
+}
+
+
+.control-panel {
+    display: flex;
+    width: 80%;
+    background-color: #444;
+    border-radius: 0 0 24px 24px; /* Заокруглення тільки нижніх кутів */
+    overflow: hidden;
+    z-index: 1;
+    max-height: 80vh; /* Обмежуємо висоту панелі */
+}
+
+/* Ліва панель (sidebar) */
+.sidebar {
+    width: 150px;
+    background-color: #555;
+    padding: 20px;
+    color: white;
+    border-right: 2px solid #333;
+    overflow-y: auto; /* Окремий скролбар для лівої панелі */
+    max-height: 80vh; /* Зберігаємо обмеження по висоті */
+    position: relative;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    margin: 20px 0;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    margin-right: 10px;
+}
+
+/* Права панель (task-list) */
+.task-list {
+    flex: 1;
+    padding: 20px;
+    color: white;
+    overflow-y: auto; /* Окремий скролбар для правої панелі */
+    max-height: 80vh; /* Щоб обмежити висоту прокручуваної області */
+}
+
+.task {
+    display: flex;
+    justify-content: space-between;
+    background-color: #666;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.task-name {
+    font-weight: bold;
+}
+
+.task-author {
+    font-style: italic;
+}
+
+
+.logout-button {
+    background: none;        /* Вимкнути фон */
+    border: none;           /* Вимкнути рамку */
+    color: inherit;         /* Залишити колір тексту за замовчуванням */
+    text-decoration: none; /* Додати підкреслення */
+    cursor: pointer;        /* Змінити курсор на вказівник */
+    padding: 0;            /* Вимкнути внутрішні відступи */
+    color: #552564;
+    font-weight: 400;
+    font-size: 18px;
+    padding: 5px 5px;
+    margin-bottom: 5px;
+    margin-left: -6px;
+    margin-top: 5px;
+    background-color: #552564;
+    color: #fff;
+    border-radius: 16px;
+    
+}
+
+filter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filter-button {
+    padding: 5px 5px;
+    margin-bottom: 20px;
+    background-color: #552564;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    border-color: #552564;
+}
+.filter-button:hover {
+    background-color: #371b3f;
+}
+  
+label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+  
+select {
+    padding: 5px;
+    margin-right: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+div a {
+    padding: 5px 5px;
+    background-color: #552564;
+    color: #fff;
+    border-radius: 16px;
+    text-decoration: none;
+}
+  
+div a:hover {
+    background-color: #371b3f;
+}
+
+li {
+    background-color: #2f2f2f;
+    padding: 10px;
+    margin-bottom: 25px;
+    border: 1px solid #030303;
+    border-radius: 16px;
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+}
+
+.task-info {
+    display: flex;
+    align-items: center;
+    margin: 0 auto; /* Центрує task-info в контейнері */
+}
+
+.task-info a {
+    font-size: 1.2em;
+    color: #ffffff;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.task-status {
+    font-size: 0.9em;
+    color: #777;
+    margin-left: 10px;
+}
+
+.task-actions {
+    display: flex;
+    gap: 10px; /* Відстань між кнопками Edit і Delete */
+}
+
+.task-actions a {
+    color: #fff;
+    background-color: #751593;
+    padding: 5px 10px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.task-actions a:hover {
+    background-color: #371b3f;
+}
+
+
+
+
+.task-title {
+    font-size: 2em;
+    color: #bababa;
+  }
+  
+.task-status, .task-context, .task-money, .task-owner {
+    font-size: 1em;
+    margin: 5px 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+  
+.comments-header {
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+  
+.comments-list {
+    list-style-type: none;
+    max-width: 100%;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.comment-content {
+    word-wrap: break-word; /* Для старих браузерів */
+    overflow-wrap: break-word; /* Для нових браузерів */
+    max-width: 95%; /* Встановіть ширину контейнера, якщо потрібно */
+    
+}
+
+.comment-item {
+    text-align: left;
+    background-color: #2f2f2f;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 16px;
+    max-width: 100%;
+}
+  
+.no-comments {
+    color: #777;
+    font-style: italic;
+}
+  
+.comment-form {
+    margin-top: 20px;
+    margin-right: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+  
+.login-prompt {
+    margin-top: 10px;
+}
+.add-comment-button {
+    width: 50%;
+    background: none;        /* Вимкнути фон */
+    border: none;           /* Вимкнути рамку */
+    color: inherit;         /* Залишити колір тексту за замовчуванням */
+    text-decoration: none; /* Додати підкреслення */
+    cursor: pointer;        /* Змінити курсор на вказівник */
+    padding: 5px;            /* Вимкнути внутрішні відступи */
+    color: #552564;
+    font-weight: 400;
+    font-size: 18px;
+    margin-top: 5px;
+    background-color: #552564;
+    color: #fff;
+    border-radius: 16px;
+    
+}
+
+
+
+
+/* Контейнер для форми */
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #333;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column; /* Вирівнювання елементів у колону */
+    align-items: center;
+}
+
+/* Заголовок форми */
+.form-container h2 {
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2em;
+    width: 100%; /* Ширина на весь контейнер */
+}
+
+/* Поля введення форми */
+.form-container input[type="text"],
+.form-container input[type="password"],
+.form-container input[type="email"] {
+    width: 100%; /* Ширина на весь контейнер */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #555;
+    border-radius: 8px;
+    background-color: #222;
+    color: #fff;
+}
+
+/* Зміна кольору під час фокусування */
+.form-container input[type="text"]:focus,
+.form-container input[type="password"]:focus,
+.form-container input[type="email"]:focus {
+    border-color: #751593;
+    outline: none;
+}
+
+/* Кнопки форми */
+.form-container button {
+    width: 100%; /* Ширина на весь контейнер */
+    padding: 10px;
+    background-color: #552564;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px; /* Відступ зверху для кнопки */
+}
+
+.form-container button:hover {
+    background-color: #2e1a34;
+}
+
+/* Повідомлення про помилки або інші системні повідомлення */
+.form-container .errorlist {
+    color: #ff6666;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    text-align: left;
+    width: 100%;
+}
+.form-container textarea {
+    width: 100%; /* Ширина на весь контейнер */
+    padding: 10px; /* Внутрішні відступи */
+    margin-bottom: 15px; /* Відступ знизу */
+    border: 1px solid #555; /* Кордон полів */
+    border-radius: 8px; /* Заокруглені кути */
+    background-color: #222; /* Фоновий колір полів */
+    color: #fff; /* Колір тексту */
+    resize: none; /* Дозволяємо вертикальне зміщення */
+    min-height: 100px; /* Мінімальна висота для текстового поля */
+    font-family: Arial, sans-serif; /* Шрифт тексту */
+    font-size: 1em; /* Розмір шрифту */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Зміна кольору під час фокусування */
+.form-container textarea:focus {
+    border-color: #751593; /* Колір кордону під час фокусу */
+    outline: none; /* Прибираємо обводку */
+    background-color: #333; /* Змінюємо фоновий колір при фокусі */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+
+
+.my-tasks-button {
+    margin: 20px;
+}

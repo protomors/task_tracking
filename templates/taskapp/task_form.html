@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
-
-{% block content%}
-    
-    <form method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="New task">
-    </form>
-
+{% block title %}Create New Task{% endblock %}
+{% block content %}
+    <div class="form-container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Create Task" class="submit-button">
+        </form>
+    </div>
 {% endblock %}

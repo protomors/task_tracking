@@ -3,9 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>UpNet</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/stars.js' %}"></script>
 </head>
 <body>
+    <div class="background">
+        <!-- Заголовок для control-panel, який використовує блок title -->
+        <div class="panel-header"><a href="{% url 'home' %}">{% block title %}UpNet{% endblock %}</a>
+            <div class="circles">
+                <div class="circle circle1"></div>
+                <div class="circle circle2"></div>
+                <div class="circle circle3"></div>
+            </div>
+        </div>
+        <div class="control-panel">
+            <div class="sidebar">
+                <ul>
+                    <li><span class="icon">📋</span> <a href="{% url 'task-list' %}">Tasks</a></li>
+                    {% if user.is_authenticated %}
+                        <li><span class="icon">➕</span> <a href="{% url 'task-create' %}">Add Task</a></li>
+                    {% else %}
+                        <li><span class="icon">☎</span><a href="{% url 'login' %}">Login</a></li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <li><span class="icon">🚪</span> <button type="submit" class="logout-button">Logout</button></li>
+                        </form>
+                    {% else %}
+                        <li><span class="icon">☑</span><a href="{% url 'signup' %}">Sign Up</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="task-list">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<!-- <body>
+    <h1>FreeLunch</h1>
     <header>
         <nav>
             <ul>
@@ -21,9 +63,5 @@
             </ul>
         </nav>
     </header>
-    <div>
-        {% block content %}
-        {% endblock %}
-    </div>
 </body>
-</html>
+</html> -->

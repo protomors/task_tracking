@@ -10,9 +10,9 @@ class TaskForm(forms.ModelForm):
 
     class Meta:
         model = Task
-        fields = ("title", "description", "due_date", "status", "priority")
+        fields = ("title", "description", "status", "priority")
 
 class CommentForm(forms.ModelForm):
     class Meta:
-        models = Comment
-        fields = ['text']
+        model = Comment
+        fields = ['content']

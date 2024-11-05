@@ -1,25 +1,49 @@
 {% extends "base.html" %}
 
-{% block content %}
-  <h2>Your Tasks</h2>
+{% block title %}All Tasks{% endblock %}
 
-  <form method="get">
-    <label for="status">Filter by status:</label>
-    <select name="status" id="status">
-      <option value="">All</option>
-      <option value="pending">Pending</option>
-      <option value="in_progress">In Progress</option>
-      <option value="completed">Completed</option>
-    </select>
-    <button type="submit">Filter</button>
-  </form>
-  <div><a href="/task/new">Add Task</a></div>
+{% block content %}
+  <div class="filter-container">
+    <form method="get" class="filter">
+      <label for="status">Filter by status:</label>
+      <select name="status" id="status">
+        <option value="">All</option>
+        <option value="pending" {% if request.GET.status == "pending" %}selected{% endif %}>Pending</option>
+        <option value="in_progress" {% if request.GET.status == "in_progress" %}selected{% endif %}>In Progress</option>
+        <option value="completed" {% if request.GET.status == "completed" %}selected{% endif %}>Completed</option>
+      </select>
+
+      <label for="priority">Sort by priority:</label>
+      <select name="priority" id="priority">
+        <option value="">All</option>
+        <option value="low" {% if request.GET.priority == "low" %}selected{% endif %}>Low</option>
+        <option value="medium" {% if request.GET.priority == "medium" %}selected{% endif %}>Medium</option>
+        <option value="high" {% if request.GET.priority == "high" %}selected{% endif %}>High</option>
+      </select>
+
+      <label for="search">Search:</label>
+      <input type="text" name="search" id="search" placeholder="Search tasks..." value="{{ request.GET.search|default_if_none:'' }}">
+
+      <button type="submit" class="filter-button">Apply Filters</button>
+
+      <a href="?my_tasks=1" class="my-tasks-button">My Tasks</a>
+    </form>
+  </div>
 
   <ul>
     {% for task in tasks_list %}
-      <li><a href="{%url 'task-detail' task.pk %}">{{ task.title }}</a> - {{ task.get_status_display }}
-        <a href="{% url 'task-edit' task.pk %}">Edit</a>
-        <a href="{% url 'task-delete' task.pk %}">Delete</a>
+      <li>
+        <div class="task-info">
+          <a href="{% url 'task-detail' task.pk %}">{{ task.title }}</a>
+          <span class="task-status">- {{ task.get_status_display }} (Priority: {{ task.get_priority_display }})</span>
+        </div>
+
+        {% if task.user == request.user %}
+          <div class="task-actions">
+            <a href="{% url 'task-edit' task.pk %}">Edit</a>
+            <a href="{% url 'task-delete' task.pk %}">Delete</a>
+          </div>
+        {% endif %}
       </li>
     {% endfor %}
   </ul>
