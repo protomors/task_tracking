@@ -1,3 +1,30 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Apply fade-in animation */
+.fade-in {
+    opacity: 0; /* Start invisible */
+    animation: fadeIn 0.2s ease-in forwards;
+}
+
+@keyframes fadeInSlide {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+
 /* Загальні стилі */
 
 * {
@@ -53,14 +80,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
 }
 .panel-header a {
     text-decoration: none;
     background-color: rgba(255, 255, 255, 0);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .panel-header a:hover {
     background-color: rgba(255, 255, 255, 0);
+    color: #555 ;
 }
 .circles {
     display: flex;
@@ -76,14 +106,26 @@
 /* Індивідуальні кольори для кожного круга */
 .circle1 {
     background-color: #8cff66; /* Червоний за замовчуванням */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.circle1:hover {
+    background-color: #61a14b; /* Червоний за замовчуванням */
 }
 
 .circle2 {
     background-color: #edff66; /* Зелений за замовчуванням */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.circle2:hover {
+    background-color: #a5b052; /* Зелений за замовчуванням */
 }
 
 .circle3 {
     background-color: #ff6666; /* Синій за замовчуванням */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.circle3:hover {
+    background-color: #9d3f3f; /* Синій за замовчуванням */
 }
 
 
@@ -168,7 +210,11 @@
     background-color: #552564;
     color: #fff;
     border-radius: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
     
+}
+.logout-button:hover {
+    background-color: #371b3f;
 }
 
 filter{
@@ -186,6 +232,7 @@ filter{
     border-radius: 8px;
     text-decoration: none;
     border-color: #552564;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 .filter-button:hover {
     background-color: #371b3f;
@@ -212,6 +259,7 @@ div a {
     color: #fff;
     border-radius: 16px;
     text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
   
 div a:hover {
@@ -227,6 +275,7 @@ li {
     display: flex;
     /* justify-content: space-between; */
     align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 .task-info {
@@ -259,6 +308,7 @@ li {
     padding: 5px 10px;
     border-radius: 10px;
     text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .task-actions a:hover {
@@ -347,7 +397,8 @@ li {
 
 /* Контейнер для форми */
 .form-container {
-    max-width: 400px;
+    width: 400px;
+    width:fit-content;
     margin: 0 auto;
     padding: 20px;
     background-color: #333;
@@ -357,6 +408,19 @@ li {
     flex-direction: column; /* Вирівнювання елементів у колону */
     align-items: center;
 }
+.submit-button {
+    width: 100%; /* Ширина на весь контейнер */
+    padding: 10px;
+    background-color: #552564;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
 
 /* Заголовок форми */
 .form-container h2 {
@@ -383,6 +447,7 @@ li {
 /* Зміна кольору під час фокусування */
 .form-container input[type="text"]:focus,
 .form-container input[type="password"]:focus,
+.form-container input[type="file"]:focus,
 .form-container input[type="email"]:focus {
     border-color: #751593;
     outline: none;
@@ -414,6 +479,7 @@ li {
     text-align: left;
     width: 100%;
 }
+.comment-form textarea,
 .form-container textarea {
     width: 100%; /* Ширина на весь контейнер */
     padding: 10px; /* Внутрішні відступи */
@@ -431,6 +497,7 @@ li {
 }
 
 /* Зміна кольору під час фокусування */
+.comment-form textarea:focus,
 .form-container textarea:focus {
     border-color: #751593; /* Колір кордону під час фокусу */
     outline: none; /* Прибираємо обводку */
@@ -439,8 +506,116 @@ li {
     overflow-wrap: break-word;
 }
 
-
-
 .my-tasks-button {
     margin: 20px;
+}
+
+/* General container styling */
+.task-files {
+    width: fit-content;
+    max-width: 50%;
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid rgb(9, 9, 9);
+    border-radius: 8px;
+    background-color: #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Image styling */
+.task-files img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Video styling */
+.task-files video {
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Link styling for other files (.zip, .pdf, .pptx, etc.) */
+.task-files a {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 4px;
+    background-color: #751593;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.task-files a:hover {
+    background-color: #371b3f;
+}
+
+
+
+
+
+.home {
+    text-align: center;
+    padding: 40px;
+    background: linear-gradient(to bottom right, #222, #030303);
+    color: #fff;
+    border-radius: 12px;
+    max-width: 600px;
+    margin: 50px auto;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Main heading styling */
+.home h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #552564;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Subtitle styling */
+.home p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    color: #fdfdfd;
+}
+
+/* CTA text styling */
+.home h2 {
+    font-size: 1.5em;
+    color: #ffedc0;
+    margin-bottom: 20px;
+}
+
+.home h3 {
+    font-size: 2em;
+    color: #ffedc0;
+    margin-bottom: 20px;
+}
+
+/* Signup button styling */
+.home a {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 1.2em;
+    color: #552564;
+    background-color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: bold;
+}
+
+.home a:hover {
+    background-color: #2e1a34;
+    color: #fff;
 }

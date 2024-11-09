@@ -25,6 +25,7 @@ class Task(models.Model):
     priority = models.CharField(max_length=10, choices=PRIORITY_CHOICES, default='medium')
     due_date = models.DateField(blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    files = models.FileField(upload_to="task_media/", blank=True, null=True)
 
     def get_absolute_url(self):
         return reverse('task-detail', kwargs={'pk': self.pk})

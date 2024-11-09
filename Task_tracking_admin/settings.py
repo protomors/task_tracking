@@ -131,3 +131,6 @@ LOGIN_REDIRECT_URL = 'task-list'
 LOGOUT_REDIRECT_URL = 'login'
 
 SECRET_CHAT_KEY = b'AACpO8-pqYboxPV5jwQVmeN-bZnqkglQ3smrF50ZWGg='
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"

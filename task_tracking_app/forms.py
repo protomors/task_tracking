@@ -7,10 +7,16 @@ class TaskForm(forms.ModelForm):
     status = forms.ChoiceField(choices=Task.STATUS_CHOICES, widget=forms.Select())
     priority = forms.ChoiceField(choices=Task.PRIORITY_CHOICES, widget=forms.Select())
     
-
     class Meta:
         model = Task
-        fields = ("title", "description", "status", "priority")
+        fields = ("title", "description", "status", "priority", 'files')
+        widgets = {
+            'files': forms.FileInput()
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['files'].required = False
 
 class CommentForm(forms.ModelForm):
     class Meta:

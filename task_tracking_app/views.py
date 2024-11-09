@@ -53,6 +53,10 @@ class TaskDetailView(DetailView):
             new_comment.save()
         return redirect(request.path_info)
 
+    def get_queryset(self):
+        queryset = Task.objects.all()
+        return queryset
+
 class TaskCreateView(LoginRequiredMixin, CreateView):
     model = Task
     form_class = TaskForm
@@ -62,6 +66,7 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+    
 
 class TaskUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Task

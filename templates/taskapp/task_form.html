@@ -2,7 +2,7 @@
 {% block title %}Create New Task{% endblock %}
 {% block content %}
     <div class="form-container">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit" value="Create Task" class="submit-button">

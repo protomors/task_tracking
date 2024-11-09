@@ -1,10 +1,15 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-    <h2>Навігація:</h2>
-    <ul>
-        <li>
-            <a href="{% url 'task-list' %}">List</a>
-        </li>
-    </ul>
+    <div class="home">
+        <h1>Welcome to UpNet!</h1>
+        <p>UpNet is a freelance platform that connects businesses with talented professionals, empowering experts to find inspiring projects and entrepreneurs to bring their ideas to life. We’re building a community where everyone can access what they need most: exciting opportunities, reliable partners, and a space for growth and success.</p>
+        <h1>For Businesses:</h1>
+        <p>With UpNet, you can easily find skilled freelancers who bring the experience and creativity your projects require. Our network of professionals is ready to help you achieve your goals, enhance productivity, and take your business to new heights.</p>
+        <h1>For Freelancers:</h1>
+        <p>UpNet opens new horizons for your career. Discover projects that match your expertise, grow professionally, and build a strong reputation. Here, your skills and efforts are truly valued.</p>
+        <h3>Join UpNet and let’s create something remarkable together!</h3>
+        <h2>Ready to start?</h2>
+        <a href="{% url 'signup' %}">Join Us</a>
+    </div>
 {%endblock%}
