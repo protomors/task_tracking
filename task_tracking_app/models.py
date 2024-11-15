@@ -23,9 +23,11 @@ class Task(models.Model):
     money = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True, default=0)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
     priority = models.CharField(max_length=10, choices=PRIORITY_CHOICES, default='medium')
-    due_date = models.DateField(blank=True, null=True)
+    due_date = models.DateField(auto_now_add=True, blank=True, null=True)
+    deadline = models.DateField(blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     files = models.FileField(upload_to="task_media/", blank=True, null=True)
+    
 
     def get_absolute_url(self):
         return reverse('task-detail', kwargs={'pk': self.pk})

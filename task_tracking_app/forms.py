@@ -9,9 +9,13 @@ class TaskForm(forms.ModelForm):
     
     class Meta:
         model = Task
-        fields = ("title", "description", "status", "priority", 'files')
+        fields = ("title", "description", "status", "priority", 'files', 'deadline')
         widgets = {
-            'files': forms.FileInput()
+            'files': forms.FileInput(),
+            'deadline': forms.DateInput(attrs={
+                'type': 'date',
+                'class': 'form-control'
+            }),
         }
 
     def __init__(self, *args, **kwargs):

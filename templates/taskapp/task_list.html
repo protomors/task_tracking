@@ -23,6 +23,18 @@
 
       <label for="search">Search:</label>
       <input type="text" name="search" id="search" placeholder="Search tasks..." value="{{ request.GET.search|default_if_none:'' }}">
+      <label for="start_date">Start Date:</label>
+      <input type="date" name="start_date" id="start_date">
+
+      <label for="end_date">End Date:</label>
+      <input type="date" name="end_date" id="end_date">
+
+      <label for="search">Search:</label>
+      <input type="text" name="search" id="search" placeholder="Search tasks...">
+
+      <label>
+          <input type="checkbox" name="my_tasks" value="1"> My Tasks
+      </label>
 
       <button type="submit" class="filter-button">Apply Filters</button>
 

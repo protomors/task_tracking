@@ -329,7 +329,13 @@ li {
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
-  
+.task-created, .task-deadline {
+    font-size: 0.8em;
+    margin: 5px 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    color: #222;
+}
 .comments-header {
     font-size: 1.5em;
     margin-top: 20px;
@@ -618,4 +624,48 @@ li {
 .home a:hover {
     background-color: #2e1a34;
     color: #fff;
+}
+
+
+
+
+
+
+
+.delete-confirmation, .comment-edit {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #333;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.comment-preview {
+    font-style: italic;
+    color: #555;
+    margin: 10px 0;
+}
+
+.confirm-delete-button, .save-changes-button {
+    background-color: #371b3f;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cancel-button {
+    margin-left: 10px;
+    text-decoration: none;
+    padding: 10px 15px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #333;
+}
+
+.cancel-button:hover, .confirm-delete-button:hover, .save-changes-button:hover {
+    opacity: 0.8;
 }

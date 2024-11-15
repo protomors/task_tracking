@@ -7,6 +7,8 @@
   <p class="task-context">Context: {{ task.description }}</p>
   <p class="task-money">Money: {{ task.money }}</p>
   <p class="task-owner">Owner: {{ task.user.username }}</p>
+  <p class="task-created">Created: {{ task.due_data }}</p>
+  <p class="task-deadline">deadline: {{ task.deadline }}</p>
   {% if task.files %}
     <div class="task-files">
       {% if task.files.url|endswith:".jpg" or task.files.url|endswith:".png" or task.files.url|endswith:".jpeg" %}
@@ -36,6 +38,12 @@
     {% if comments.exists %}
         {% for comment in comments %}
             <li class="comment-item">{{ comment.user.username }}:<span class="comment-content">{{ comment.content }}</span></li>
+            {% if task.user == request.user %}
+            <div class="task-actions">
+              <a href="{% url 'comment-update' task_pk=task.pk pk=comment.pk %}" class="edit-comment-button">Edit</a>
+              <a href="{% url 'comment-delete' task_pk=task.pk pk=comment.pk %}" class="delete-comment-button">Delete</a>
+            </div>
+            {% endif %}
         {% endfor %}
     {% else %}
         <p class="no-comments">No comments yet. Be the first to comment!</p>

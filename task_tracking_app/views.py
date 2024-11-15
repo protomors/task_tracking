@@ -5,10 +5,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.core.exceptions import PermissionDenied
-from django.db.models import Q
+from django.db.models import Q, F, Value, When, Case
+from datetime import datetime
+from django.contrib.auth.views import LoginView
 
 from .models import Task, Comment
 from .forms import TaskForm, CommentForm
+from .mixins import RedirectAuthenticatedUserMixin
 
 
 class TaskListView(ListView):
@@ -22,6 +25,9 @@ class TaskListView(ListView):
         priority = self.request.GET.get('priority')
         search_query = self.request.GET.get('search')
         my_tasks = self.request.GET.get('my_tasks')
+        start_date = self.request.GET.get('start_date')
+        end_date = self.request.GET.get('end_date')
+
 
         if my_tasks:
             queryset = queryset.filter(user=self.request.user)
@@ -31,6 +37,27 @@ class TaskListView(ListView):
             queryset = queryset.filter(priority=priority)
         if search_query:
             queryset = queryset.filter(Q(title__icontains=search_query) | Q(description__icontains=search_query))
+        if start_date:
+            try:
+                start_date_obj = datetime.strptime(start_date, "%Y-%m-%d").date()
+                queryset = queryset.filter(due_date__gte=start_date_obj)
+            except ValueError:
+                pass  # Ігноруємо помилку парсингу дати
+
+        if end_date:
+            try:
+                end_date_obj = datetime.strptime(end_date, "%Y-%m-%d").date()
+                queryset = queryset.filter(deadline__lte=end_date_obj)
+            except ValueError:
+                pass  # Ігноруємо помилку парсингу дати
+
+        queryset = queryset.annotate(
+            # Додаємо поле для сортування: 1 для завдань без дати, 0 для решти
+            no_deadline=Case(
+                When(deadline__isnull=True, then=Value(1)),
+                default=Value(0),
+            )
+        ).order_by('no_deadline', 'deadline')
 
         return queryset
 
@@ -87,10 +114,13 @@ class TaskDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         task = self.get_object()
         return task.user == self.request.user
 
-class SignUpView(CreateView):
+class SignUpView(RedirectAuthenticatedUserMixin,CreateView):
     form_class = UserCreationForm
     template_name = 'registration/signup.html'
     success_url = reverse_lazy('login')
+
+class LoginView(RedirectAuthenticatedUserMixin, LoginView):
+    template_name = 'registration/login.html'
 
 class CommentCreateView(LoginRequiredMixin, CreateView):
     model = Comment
