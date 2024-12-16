@@ -31,14 +31,16 @@
 
       <label for="search">Search:</label>
       <input type="text" name="search" id="search" placeholder="Search tasks...">
-
-      <label>
-          <input type="checkbox" name="my_tasks" value="1"> My Tasks
-      </label>
+      {% if user.is_authenticated %}
+        <label>
+            <input type="checkbox" name="my_tasks" value="1"> My Tasks
+        </label>
+      {% endif %}
 
       <button type="submit" class="filter-button">Apply Filters</button>
-
-      <a href="?my_tasks=1" class="my-tasks-button">My Tasks</a>
+      {% if user.is_authenticated %}
+        <a href="?my_tasks=1" class="my-tasks-button">My Tasks</a>
+      {% endif %}
     </form>
   </div>
 

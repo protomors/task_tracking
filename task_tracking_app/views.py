@@ -114,7 +114,7 @@ class TaskDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         task = self.get_object()
         return task.user == self.request.user
 
-class SignUpView(RedirectAuthenticatedUserMixin,CreateView):
+class SignUpView(RedirectAuthenticatedUserMixin, CreateView):
     form_class = UserCreationForm
     template_name = 'registration/signup.html'
     success_url = reverse_lazy('login')

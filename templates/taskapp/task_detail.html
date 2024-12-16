@@ -38,7 +38,7 @@
     {% if comments.exists %}
         {% for comment in comments %}
             <li class="comment-item">{{ comment.user.username }}:<span class="comment-content">{{ comment.content }}</span></li>
-            {% if task.user == request.user %}
+            {% if comment.user == request.user %}
             <div class="task-actions">
               <a href="{% url 'comment-update' task_pk=task.pk pk=comment.pk %}" class="edit-comment-button">Edit</a>
               <a href="{% url 'comment-delete' task_pk=task.pk pk=comment.pk %}" class="delete-comment-button">Delete</a>
