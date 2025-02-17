@@ -9,7 +9,7 @@ class TaskForm(forms.ModelForm):
     
     class Meta:
         model = Task
-        fields = ("title", "description", "status", "priority", 'files', 'deadline')
+        fields = ("title", "description", "status", "priority",'money', 'files', 'deadline')
         widgets = {
             'files': forms.FileInput(),
             'deadline': forms.DateInput(attrs={
