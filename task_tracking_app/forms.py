@@ -3,7 +3,7 @@ from .models import Task, Comment
 
 class TaskForm(forms.ModelForm):
     due_date = forms.DateInput(attrs={'type': 'date'})
-    
+    money = forms.DecimalField(min_value=0, widget=forms.NumberInput(attrs={'class': 'form-control'}))
     status = forms.ChoiceField(choices=Task.STATUS_CHOICES, widget=forms.Select())
     priority = forms.ChoiceField(choices=Task.PRIORITY_CHOICES, widget=forms.Select())
     
