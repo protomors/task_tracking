@@ -21,8 +21,6 @@
         <option value="high" {% if request.GET.priority == "high" %}selected{% endif %}>High</option>
       </select>
 
-      <label for="search">Search:</label>
-      <input type="text" name="search" id="search" placeholder="Search tasks..." value="{{ request.GET.search|default_if_none:'' }}">
       <label for="start_date">Start Date:</label>
       <input type="date" name="start_date" id="start_date">
 
